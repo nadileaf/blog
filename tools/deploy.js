@@ -41,7 +41,7 @@ async function main() {
   console.log('[git] clone done')
 
   // clean old files
-  shell.ls(repoPath).forEach(v => {
+  shell.ls(`-A`, repoPath).forEach(v => {
     if (v == '.git') { return }
     const targetPath = path.resolve(repoPath, v)
     shell.rm('-rf', targetPath)
