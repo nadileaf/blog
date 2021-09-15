@@ -1,0 +1,28 @@
+name: blog-actions
+
+on:
+  push:
+    branches:
+      - driven
+  issues:
+    types: [opened, closed, edited, milestoned, labeled, unlabeled, reopened, demilestoned]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download Issue and Publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm install vuepress
+          npm install
+          npm run action
+          npm run build
+          npm run deploy
