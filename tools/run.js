@@ -6,7 +6,7 @@ const { repoConfig, slogan, base } = require('../src/.vuepress/config')
 const rootPath = path.resolve('.')
 const buildPath = path.resolve(rootPath, './build')
 const srcPath = path.resolve(rootPath, './src')
-const postPath = path.resolve(rootPath, './posts')
+const postPath = path.resolve(srcPath, './posts')
 const milestonesPath = path.resolve(srcPath, './categories')
 
 const issueFilepath = path.resolve(buildPath, './issues.json')
