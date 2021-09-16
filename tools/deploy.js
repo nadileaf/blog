@@ -22,7 +22,6 @@ async function main() {
   const distPath = path.resolve(rootPath, './dist')
   const buildPath = path.resolve(rootPath, './build')
   const repoPath = path.resolve(buildPath, repo)
-  const workflowsPath = path.resolve(repoPath, '.github/workflows')
 
   const remote = `https://${actor}:${token}@github.com/${owner}/${repo}.git`
   console.log(`[remote] ${remote}`)
@@ -49,7 +48,7 @@ async function main() {
   })
 
   // replace with new files
-  shell.ls(distPath).forEach(v => {
+  shell.ls(`-A`, distPath).forEach(v => {
     const sourcePath = path.resolve(distPath, v)
     const targetPath = path.resolve(repoPath, v)
     shell.cp('-r', sourcePath, repoPath)
